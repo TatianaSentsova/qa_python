@@ -61,7 +61,7 @@ class TestBooksCollector:
     def test_get_book_genre_true(self, name):
         self.collector.add_new_book(name)
         self.collector.set_book_genre(name, 'Ужасы')
-        assert self.collector.books_genre.get(name) == 'Ужасы'
+        assert self.collector.get_book_genre(name) == 'Ужасы'
 
     def test_get_books_with_specific_genre_cartoons_true(self, new_books):
         for name, genre in new_books:
@@ -87,7 +87,7 @@ class TestBooksCollector:
         assert len(list(self.collector.get_books_genre())) == 5
 
     def test_get_books_genre_with_empty_books_genre(self):
-        assert self.collector.books_genre == {}
+        assert self.collector.get_books_genre() == {}
 
     def test_get_books_for_children(self, new_books):
         for name, genre in new_books:
@@ -123,10 +123,10 @@ class TestBooksCollector:
         self.collector.delete_book_from_favorites(name)
         assert self.collector.favorites == []
 
-    def get_list_of_favorites_book_from_one_book(self, name):
+    def test_get_list_of_favorites_book_from_one_book(self, name):
         self.collector.add_new_book(name)
         self.collector.add_book_in_favorites(name)
         assert len(self.collector.get_list_of_favorites_books()) == 1
 
-    def get_list_of_favorites_book_without_book(self):
+    def test_get_list_of_favorites_book_without_book(self):
         assert self.collector.get_list_of_favorites_books() == []
