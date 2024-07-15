@@ -39,7 +39,7 @@ class TestBooksCollector:
                                       'Это самая лучшая и интересная книга в мире. Часть 2']
                              )
     def test_add_new_book_invalid_length_name(self, name):
-        assert not self.collector.books_genre.get(name)
+        assert not self.collector.add_new_book(name)
 
     def test_add_new_book_same_name_twice(self, name):
         self.collector.add_new_book(name)
